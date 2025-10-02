@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OCEANY</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      color: #111;
+    }
+
+    /* --------- HEADER --------- */
+    header {
+      background: #ffffff;
+      padding: 15px 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    /* --------- BOTÓN MENÚ (estética original respetada) --------- */
+    .boton-menu {
+      position: fixed;
+      top: 27%;
+      left: 125px;
+      transform: translateY(-50%);
+      z-index: 1000;
+    }
+
+    .boton-principal {
+      background-color: #000000;
+      color: white;
+      border: none;
+      border-radius: 30%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: grab;
+      box-shadow: 0 4px 10px rgb(0, 0, 0);
+      transition: background 0.3s ease;
+    }
+
+    .boton-principal:hover {
+      background-color: #000000;
+    }
+
+    .botones-secundarios {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-top: 10px;
+      opacity: 0;
+      transform: translateX(30px);
+      pointer-events: none;
+      transition: opacity 0.1s ease, transform 0.3s ease;
+    }
+
+    .botones-secundarios.activo {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    .botones-secundarios a {
+      margin: 5px 0;
+      width: 130px;
+      padding: 10px;
+      text-align: center;
+      display: block;
+      text-decoration: none;
+      background-color: #000000;
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease, background 0.3s;
+    }
+
+    .botones-secundarios a:hover {
+      background-color: #333333;
+      transform: scale(1.05);
+    }
+
+    /* --------- BOTÓN USUARIO --------- */
+    .user-btn {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1001;
+    }
+
+    /* --------- MODAL LOGIN --------- */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      width: 350px;
+      max-width: 95%;
+      position: relative;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ff4848;
+      border-radius: 8px;
+    }
+
+    .show-password-btn {
+      background: none;
+      border: none;
+      font-size: 12px;
+      text-decoration: underline;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #333;
+    }
+
+    .google-btn {
+      background-color: #db4437;
+    }
+
+    .google-btn:hover {
+      background-color: #c23321;
+    }
+
+    .toggle, .forgot {
+      text-align: center;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    .toggle a, .forgot a {
+      cursor: pointer;
+      color: #111;
+      text-decoration: underline;
+    }
+
+    .form {
+      display: none;
+    }
+
+    .form.active {
+      display: block;
+    }
+
+    /* --------- IMAGEN --------- */
+    .hero {
+      margin: 40px auto;
+      text-align: center;
+      max-width: 1000px;
+    }
+
+    .hero img {
+      width: 90%;
+      max-width: 1000px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 600px) {
+      .boton-principal {
+        width: 50px;
+        height: 50px;
+      }
+
+      .user-btn {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>OCEANY</h1>
+    <button class="user-btn" onclick="openModal()">👤</button>
+  </header>
+
+  <!-- Botón de menú lateral -->
+  <div class="boton-menu">
+    <button class="boton-principal" onclick="toggleMenu()">☰</button>
+    <div class="botones-secundarios" id="menu">
+      <a href="./codigoalvinsy.html">Ropa</a>
+      <a href="./CGorras.html">Gorras</a>
+      <a href="./CZapatos.html">Calzado</a>
+      <a href="./cperfumes.html">Perfumes</a>
+      <a href="./pico.html">Acerca de Nosotros</a>
+      <a onclick="openContact()">Contáctanos</a>
+    </div>
+  </div>
+
+  <!-- Hero Image -->
+  <div class="hero">
+    <img src="https://i.pinimg.com/1200x/1a/aa/65/1aaa6528dbdab5f1e88842f751e07f8e.jpg" alt="Imagen principal">
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal">
+    <div class="container">
+      <button class="close-btn" onclick="closeModal()">✖</button>
+
+      <!-- Login -->
+      <div id="loginForm" class="form active">
+        <h2>Iniciar Sesión</h2>
+        <input type="text" id="loginUsuario" placeholder="Usuario" required />
+        <input type="password" id="loginPassword" placeholder="Contraseña" required />
+        <button type="button" class="show-password-btn" onclick="togglePassword('loginPassword', this)">Mostrar contraseña</button>
+        <button onclick="login()">Entrar</button>
+        <button class="google-btn" onclick="loginWithGoogle()">Iniciar con Google</button>
+        <div class="forgot"><a onclick="showRecover()">¿Olvidaste tu contraseña?</a></div>
+        <div class="toggle">¿No tienes cuenta? <a onclick="showRegister()">Regístrate</a></div>
+        <button onclick="showLoginContact()">ir a contactos</button>
+      </div>
+      <!-- Contacto desde login -->
+<div id="loginContactForm" class="form">
+  <h2>Contáctanos</h2>
+  <textarea id="loginContactProblema" placeholder="Describe tu problema" rows="4"></textarea>
+  <input type="email" id="loginContactEmail" placeholder="Tu correo electrónico" required />
+  <input type="text" id="loginContactTelefono" placeholder="Tu número de teléfono" />
+  <button onclick="enviarLoginContacto()">Enviar</button>
+  <div class="toggle"><a onclick="showLogin()">Volver a Inicio de Sesión</a></div>
+</div>
+
+      <!-- Registro -->
+      <div id="registerForm" class="form">
+        <h2>Registro</h2>
+        <input type="text" id="registerUsuario" placeholder="Nombre de usuario" required />
+        <input type="email" id="registerEmail" placeholder="Correo electrónico" required />
+        <input type="password" id="registerPassword" placeholder="Contraseña" required />
+        <button type="button" class="show-password-btn" onclick="togglePassword('registerPassword', this)">Mostrar contraseña</button>
+        <button onclick="register()">Registrarse</button>
+        <div class="toggle">¿Ya tienes cuenta? <a onclick="showLogin()">Inicia sesión</a></div>
+      </div>
+
+      <!-- Recuperar contraseña -->
+      <div id="recoverForm" class="form">
+        <h2>Recuperar Contraseña</h2>
+        <input type="email" id="recoverEmail" placeholder="Correo electrónico" required />
+        <button onclick="recover()">Enviar enlace de recuperación</button>
+        <div class="toggle">¿Ya la recordaste? <a onclick="showLogin()">Inicia sesión</a></div>
+      </div>
+
+      <!-- Contacto -->
+      <div id="contactForm" class="form">
+        <h2>Contáctanos</h2>
+        <input type="email" id="contactEmail" placeholder="Tu correo electrónico" required />
+        <input type="text" id="contactPhone" placeholder="Tu número de teléfono (opcional)" />
+        <textarea id="contactMessage" placeholder="Describe tu problema" rows="4"></textarea>
+        <button onclick="sendContact()">Enviar mensaje</button>
+        <div class="toggle">¿Ya no necesitas ayuda? <a onclick="showLogin()">Volver</a></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('activo');
+    }
+
+    function openModal() {
+      document.getElementById('modal').classList.add('active');
+      showLogin();
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.remove('active');
+    }
+
+    function hideAllForms() {
+      document.querySelectorAll('.form').forEach(f => f.classList.remove('active'));
+    }
+
+    function showLogin() {
+      hideAllForms();
+      document.getElementById('loginForm').classList.add('active');
+    }
+
+    function showRegister() {
+      hideAllForms();
+      document.getElementById('registerForm').classList.add('active');
+    }
+
+    function showRecover() {
+      hideAllForms();
+      document.getElementById('recoverForm').classList.add('active');
+    }
+
+    function togglePassword(inputId, btn) {
+      const input = document.getElementById(inputId);
+      if (input.type === "password") {
+        input.type = "text";
+        btn.textContent = "Ocultar contraseña";
+      } else {
+        input.type = "password";
+        btn.textContent = "Mostrar contraseña";
+      }
+    }
+
+    function login() {
+      const usuario = document.getElementById("loginUsuario").value;
+      alert("Iniciando sesión como: " + usuario);
+    }
+
+    function register() {
+      const usuario = document.getElementById("registerUsuario").value;
+      alert("Registrando nuevo usuario: " + usuario);
+    }
+
+    function recover() {
+      const email = document.getElementById("recoverEmail").value;
+      alert("Enviando recuperación a: " + email);
+    }
+
+    function loginWithGoogle() {
+      alert("Función de Google no implementada aún.");
+    }
+
+    function openContact() {
+      document.getElementById("modal").classList.add("active");
+      hideAllForms();
+      document.getElementById("contactForm").classList.add("active");
+    }
+
+    function sendContact() {
+      const email = document.getElementById("contactEmail").value;
+      const phone = document.getElementById("contactPhone").value;
+      const message = document.getElementById("contactMessage").value;
+
+      if (!email || !message) {
+        alert("Por favor, completa al menos el correo y el mensaje.");
+        return;
+      }
+
+      alert(`Mensaje enviado:\nCorreo: ${email}\nTeléfono: ${phone}\nMensaje: ${message}`);
+      closeModal();
+    }
+
+    window.addEventListener("click", function (event) {
+      const modal = document.getElementById("modal");
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+   function showLoginContact() {
+  document.getElementById("modal").classList.add("active");
+  hideAllForms();
+  document.getElementById("loginContactForm").classList.add("active");
+}
+
+function enviarLoginContacto() {
+  const problema = document.getElementById("loginContactProblema").value;
+  const email = document.getElementById("loginContactEmail").value;
+  const telefono = document.getElementById("loginContactTelefono").value;
+
+  if (!problema || !email) {
+    alert("Por favor, completa al menos el problema y el correo.");
+    return;
+  }
+
+  alert(`Mensaje enviado:\nProblema: ${problema}\nCorreo: ${email}\nTeléfono: ${telefono}`);
+  closeModal();
+} 
+  </script>
+</body>
+</html>

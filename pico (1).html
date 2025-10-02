@@ -1,0 +1,190 @@
+   <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nosotros</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f9f9f9, #e6f0ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-top: 40px;
+      font-size: 2.5em;
+      color: #333;
+      font-weight: bold;
+    }
+
+    p {
+      max-width: 1000px;
+      margin: 20px;
+      font-size: 1.1em;
+      color: #333;
+    }
+
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      padding: 50px;
+      max-width: 1300px;
+      width: 100%;
+    }
+
+    .tarjeta {
+      background-color: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tarjeta:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .tarjeta img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    footer {
+      padding: 20px;
+      color: #666;
+      font-size: 0.9em;
+      text-align: center;
+      background-color: transparent;
+      margin-top: auto;
+    }
+
+    /* Carrusel */
+    .carrusel-container {
+      width: 90%;
+      max-width: 700px;
+      overflow: hidden;
+      position: relative;
+      margin-top: 50px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .carrusel-imagenes {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: 100%;
+    }
+
+    .carrusel-imagenes img {
+      width: 100%;
+      flex-shrink: 0;
+      height: auto;
+      border-radius: 20px;
+    }
+
+    .carrusel-boton {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: 30px;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .anterior {
+      left: 10px;
+    }
+
+    .siguiente {
+      right: 10px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1 style="text-align: center;">VISIÓN</h1>
+  <p style="text-align: justify;">Ser una tienda líder en moda integral que inspire confianza, estilo y autenticidad en cada cliente, convirtiéndonos en la primera opción para quienes buscan ropa, perfumes y calzado de calidad, en un solo lugar.</p>
+
+  <h1 style="text-align: center;">MISIÓN</h1>
+  <p style="text-align: justify;">Ofrecer a nuestros clientes una experiencia de compra única, brindando productos de moda, fragancias y calzado que combinan calidad, diseño y accesibilidad. Nos comprometemos a mantenernos a la vanguardia de las tendencias y a proporcionar un servicio cálido y personalizado que refleje nuestra pasión por el buen gusto y el estilo.</p>
+
+  <h1 style="text-align: center;">INFORMACIÓN</h1>
+  <p style="text-align: justify;">Contamos con una amplia selección de prendas para dama y caballero, desde ropa casual y urbana hasta outfits elegantes para eventos especiales. Nuestras colecciones se actualizan constantemente para estar a la vanguardia de las tendencias. Disponemos de una variedad exclusiva de fragancias importadas y nacionales para todos los gustos. Ya sea que busques un aroma fresco, dulce, intenso o sofisticado, tenemos la opción ideal para ti. Nuestra línea de calzado incluye modelos cómodos, modernos y duraderos. Desde zapatillas deportivas hasta tacones, botas o zapatos de vestir, tenemos el par perfecto para cada momento de tu día.</p>
+
+  <h1 style="text-align: center;">CONTÁCTANOS</h1>
+  <p style="text-align: justify;">Nuestro equipo está capacitado para asesorarte y ayudarte a encontrar lo que necesitas según tu estilo, preferencias y presupuesto. Síguenos en redes sociales para conocer nuestras promociones, lanzamientos y eventos especiales.</p>
+
+  <!-- Carrusel -->
+  <div class="carrusel-container">
+    <div class="carrusel-imagenes" id="slider">
+      <img src="https://i.pinimg.com/1200x/bd/8a/74/bd8a749978baa42bc855f29eff318b7f.jpg" alt="1">
+      <img src="https://i.pinimg.com/originals/f1/1a/72/f11a7277de3a347cfe4f2b27c9a36264.png" alt="2">
+      <img src="https://i.pinimg.com/736x/e3/a7/c6/e3a7c6061a54f36ceb912ef09b0aded8.jpg" alt="3">
+      <img src="https://i.pinimg.com/736x/5f/33/0e/5f330e4f88a348edb6c22ac2d8fb8c7c.jpg" alt="3">
+      
+    </div>
+    <button class="carrusel-boton anterior" onclick="moverCarrusel(-1)">❮</button>
+    <button class="carrusel-boton siguiente" onclick="moverCarrusel(1)">❯</button>
+  </div>
+
+  <h1>Galería de Estilo</h1>
+
+  <div class="galeria">
+    <div class="tarjeta">
+      <img src="https://i.pinimg.com/736x/63/be/53/63be535fd6536f4419f348e2b920b744.jpg" alt="Imagen 1">
+    </div>
+    <div class="tarjeta">
+      <img src="https://i.pinimg.com/736x/4d/b6/17/4db61756c567607f74a5c5184ea2a712.jpg" alt="Imagen 2">
+    </div>
+    <div class="tarjeta">
+      <img src="https://i.pinimg.com/736x/63/cb/3c/63cb3c392b56a69f7c250b3d86dbca65.jpg" alt="Imagen 3">
+    </div>
+    <div class="tarjeta">
+      <img src="https://i.pinimg.com/736x/db/0f/b4/db0fb4ec4ad28143f03536034e1f29ba.jpg" alt="Imagen 4">
+    </div>
+    <div class="tarjeta">
+      <img src="https://i.pinimg.com/736x/28/71/32/2871323a9ca0aa68220cb5aaa5322ea6.jpg" alt="Imagen 5">
+    </div>
+    <div class="tarjeta">
+      <img src="https://i.pinimg.com/736x/45/3f/64/453f6429d535a1035dc5a7e411a9c825.jpg" alt="Imagen 6">
+    </div>
+    <div class="tarjeta">
+      <img src="https://i.pinimg.com/736x/8d/d3/7b/8dd37b7ca82e73a9e44635e059d5b0a5.jpg" alt="Imagen 7">
+    </div>
+    <div class="tarjeta">
+      <img src="https://i.pinimg.com/736x/55/9c/91/559c91cb35cce21da3f97e257fbcef0e.jpg" alt="Imagen 8">
+    </div>
+  </div>
+
+  <footer>&copy; 2025 OCEANY | Galería de moda</footer>
+
+  <script>
+    let indice = 0;
+
+    function moverCarrusel(direccion) {
+      const slider = document.getElementById("slider");
+      const total = slider.children.length;
+      indice = (indice + direccion + total) % total;
+      slider.style.transform = `translateX(-${indice * 100}%)`;
+    }
+  </script>
+
+</body>
+</html>

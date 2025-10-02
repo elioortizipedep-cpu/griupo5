@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de ropa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #111;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .producto {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .producto img {
+            width: 25%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .producto h3 {
+            margin: 10px 0;
+        }
+
+        .producto p {
+            color: #333;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Tienda de Prendas</h1>
+        <p>Las mejores PRENDAS a los mejores precios</p>
+    </header>
+
+    <section class="productos">
+        <div class="producto">
+            <img src="https://hmcolombia.vtexassets.com/arquivos/ids/4550624/Regular-Jeans---Azul-denim-claro---H-M-CO.jpg?v=638845433546830000" alt="Gorra 1">
+            <h3>H&M</h3>
+            <p>$19.99</p>
+        </div>
+        <div class="producto">
+            <img src="https://static.zara.net/assets/public/7258/4d05/44174a659a9d/e62294c32125/02688301250-a1/02688301250-a1.jpg?ts=1753695469208&w=560" alt="Gorra 2">
+            <h3>ZARA</h3>
+            <p>$24.99</p>
+        </div>
+        <div class="producto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8KcFHFF9Cp_KBT6IuROrpQv38RAOmTFa9hQ&s" alt="Gorra 3">
+            <h3>PULL&BEAR</h3>
+            <p>$21.99</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 OCEANY. Todos los derechos reservados.</p>
+    </footer>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #ffffff;
+    }
+
+    #header ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    #header ul li {
+      margin: 5px 0;
+      font-size: 18px;
+    }
+
+
+    .boton-menu {
+      position: fixed;
+      top: 21%;
+      left: 7px;
+      transform: translateY(-50%);
+      z-index: 1000;
+    }
+
+    .boton-principal {
+      background-color: #000000;
+      color: rgb(255, 255, 255);
+      border: none;
+      border-radius: 30%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      cursor: grab;
+      box-shadow: 0 4px 10px rgb(0, 0, 0);
+      transition: background 0.3s ease;
+    }
+
+    .boton-principal:hover {
+      background-color: #000000;
+    }
+
+    .botones-secundarios {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-top: 10px;
+      opacity: 0;
+      transform: translateX(30px);
+      pointer-events: none;
+      transition: opacity 0.1s ease, transform 0.3s ease;
+    }
+
+    .botones-secundarios.activo {
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    .botones-secundarios button {
+      margin: 5px 0;
+      width: 130px;                             
+      padding: 10px;
+      border: none;
+      background-color: rgb(0, 0, 0);
+      color: white;
+      cursor: pointer;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease, background 0.3s;
+    }
+
+    .botones-secundarios button:hover {
+      background-color: rgb(0, 0, 0);
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body> 
+  <div class="boton-menu">
+    <button class="boton-principal" onclick="toggleMenu()">☰</button>
+
+    <div class="botones-secundarios" id="menu">
+         <button><a href=""></a>inicio</button>
+        <button><a href="file:///C:/Users/PC/Downloads/Untitled-2.html"></a>Gorras</button>
+        <button><a href="./zapas.html"></a>Calzado</button>
+        <button><a href="./perfumes.html"></a>Perfumes</button>
+      <button><a href=""></a>Acerca de Nosotros</button>
+    </div>
+  </div>
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('activo');
+    }
+  </script>
+</body>
+</html>
